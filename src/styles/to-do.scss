@@ -66,7 +66,7 @@ body {
                     margin-right: 40px;
 
                     font-family: 'Poppins', sans-serif;
-                    font-size: 22px;
+                    font-size: 24px;
                     font-weight: 500;
                     color: #f5f5f5;
                     text-shadow: 0 0 5px rgba(255, 255, 255, 0.4);
@@ -97,7 +97,107 @@ body {
                 }
 
                 .dropdown {
-                    display: none;
+                    display: flex;
+                    position: absolute;
+                    border-radius: 10px;
+                    width: 250px;
+                    height: 60px;
+                    backdrop-filter: blur(32px);
+                    background: rgba(196, 186, 186, 0.37);
+                    border: 1px solid rgba(255, 255, 255, 0.7);
+                    top: 10px;
+                    left: 775px;
+
+                    &.close {
+                        .dropdown-arrow {
+                            background-image: url('../img/arrow-down.svg');
+                        }
+
+                        ul {
+                            display: none;
+                        }
+                    }
+
+                    &.open {
+                        border-bottom-left-radius: 0;
+                        border-bottom-right-radius: 0;
+                        .dropdown-arrow {
+                            background-image: url('../img/arrow-up.svg');
+                        }
+
+                        .dropdown-list {
+                            position: relative;
+
+                            ul {
+                                display: flex;
+                                flex-direction: column;
+                                position: absolute;
+                                right:-1px;
+                                top: 59px;
+                                padding: 0;
+                                margin: 0;
+                                
+
+                                li {
+                                    align-items: center;
+                                    cursor: pointer;
+                                    display: flex;
+                                    width: 250px;
+                                    height: 60px;
+                                    background: rgb(60 60 60 / 80%);
+                                    backdrop-filter: blur(32px);
+                                    border: 1px solid rgba(255, 255, 255, 0.7);
+                                    font-family: 'Baloo 2', cursive;
+                                    font-weight: 600;
+                                    font-size: 24px;
+                                    color: #fff;
+                                    margin: 0;
+                                    padding-left: 25px;
+
+                                    &:hover {
+                                        background: rgba(99, 99, 99, 0.8);
+                                    }
+                                }
+                            }
+
+                            ul li:last-child {
+                                border-bottom-left-radius: 10px;
+                                border-bottom-right-radius: 10px;
+                            }
+                        }
+
+                        
+                    }
+
+                    &:hover {
+                        backdrop-filter: blur(64px)
+                    }
+
+                    .dropdown-header {
+                        display: flex;
+                        width: 100%;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding-left: 25px;
+                        padding-right: 20px;
+                        cursor: pointer;
+
+                        p {
+                            font-family: 'Baloo 2', cursive;
+                            font-weight: 600;
+                            font-size: 24px;
+                            color: #fff;
+                            margin: 0;
+                        }
+
+                        .dropdown-arrow {
+                            width: 40px;
+                            height: 25px;
+                            background-repeat: no-repeat;
+                            background-position: center;
+                            background-size: 100%;
+                        }
+                    }
                 }
             }
 
@@ -124,9 +224,11 @@ body {
                     p {
                         margin: 0;
                         font-weight: 400;
-                        font-size: 40px;
+                        font-size: 32px;
                         color: #fff;
                         font-family: 'Baloo 2', cursive;
+                        overflow: hidden;
+                        max-width: 550px;
                     }
 
                     .task-managment {

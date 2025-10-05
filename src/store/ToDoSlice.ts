@@ -7,11 +7,13 @@ export interface ToDo {
 }
 
 interface ToDoState {
-    todos: ToDo[]
+    todos: ToDo[],
+    filter: string
 }
 
 const initialState: ToDoState = {
-    todos: []
+    todos: [],
+    filter: 'All'
 }
 
 const ToDoSlice = createSlice({
@@ -33,9 +35,12 @@ const ToDoSlice = createSlice({
         },
         deleteTask(state, action: PayloadAction<number>) {
             state.todos = state.todos.filter((todo) => todo.id !== action.payload)
+        },
+        changeFilter(state, action: PayloadAction<string>) {
+            state.filter = action.payload
         }
     }
 })
 
-export const {addTask, toggleTask, deleteTask} = ToDoSlice.actions
+export const {addTask, toggleTask, deleteTask, changeFilter} = ToDoSlice.actions
 export default ToDoSlice.reducer
