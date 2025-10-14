@@ -1,11 +1,11 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { addTask, changeFilter } from "../store/ToDoSlice"
+import { changeFilter, fetchAddTodo } from "../store/ToDoSlice"
 import { useSelector } from "react-redux"
-import { RootState } from "../store/store"
+import { AppDispatch, RootState } from "../store/store"
 
 const ToDoInput = () => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch<AppDispatch>()
     const [value, setValue] = useState('')
     const [dropdown, setDropdown]= useState<boolean>(false)
     const filter = useSelector((store: RootState) => store.todo.filter)
@@ -14,7 +14,7 @@ const ToDoInput = () => {
         if(value.length > 25) {
             return alert('Maximum length is 25 characters')
         } else if(value.trim() !== '') {
-            dispatch(addTask(value))
+            dispatch(fetchAddTodo(value))
             setValue('')
         }
     }

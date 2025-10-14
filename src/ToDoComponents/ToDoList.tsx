@@ -1,10 +1,18 @@
 import { useSelector } from "react-redux"
 import type { RootState } from "../store/store"
 import ToDoItem from "./ToDoItem"
+import { useDispatch } from "react-redux"
+import { useEffect } from "react"
+import { fetchToDos } from "../store/ToDoSlice"
 
 const ToDoList = () => {
+    const dispatch = useDispatch<any>()
     const todos = useSelector((store: RootState) => store.todo.todos)
     const filter = useSelector((store: RootState) => store.todo.filter)
+
+    useEffect(() => {
+        dispatch(fetchToDos())
+    },[dispatch])
 
     const renderToDoListWithFilter = () => {
         switch (filter) {
