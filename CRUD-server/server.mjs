@@ -1,21 +1,15 @@
 import express from 'express'
 import cors from 'cors'
-import path from 'path'
-import { fileURLToPath } from 'url'
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
 
 const app = express()
 app.use(cors())
-app.use(express.static(path.join(__dirname, 'client/build')))
 
 let todos = []
 
 app.use(express.json())
 
-app.get('/api/todos', (req, res) => {
-    res.json(todos)
+app.get('/', (req, res) => {
+    res.send(todos)
 })
 
 app.post('/', (req, res) => {
@@ -52,11 +46,6 @@ app.delete('/:id', (req, res) => {
     res.send(todos)
 })
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client/build/index.html'))
-})
-
-const PORT = process.env.PORT || 2000
-app.listen(PORT, () => {
-    console.log(`Server is work on port ${PORT}`)
+app.listen(2000, () => {
+    console.log('Server is work')
 })
